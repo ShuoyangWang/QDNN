@@ -1,8 +1,8 @@
-# DP2LM: Deep neural network based penalized partially linear mediation model with high-dimensional mediators
+# QDNN: Deep neural network based penalized partially linear quantile regression model for high-dimensional data
 ------------------------------------------------
 
 # Mediation model
-- Outcome-mediator model:
+- Model:
 ![model1](https://latex.codecogs.com/svg.image?&space;y=\alpha_{\textit{m}}^\intercal&space;m&plus;\alpha_{\textit{e}}^\intercal&space;x&plus;f\left(z\right)&plus;\epsilon_1.)
 - Mediator-exposure model:
 ![model2](https://latex.codecogs.com/svg.image?m=\gamma_{\textit{e}}^\intercal&space;x&plus;g\left(z\right)&plus;\epsilon_2.)
