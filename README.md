@@ -1,6 +1,6 @@
-# SCAD-Penalized Partially Linear Quantile Regression with DNN Nonlinear Component
+# SCAD-Penalized Partially Linear Quantile Regression with Neural Network Nonlinear Component with Deep and Shallow Structure Selection
 
-This repository contains a cleaned computational implementation of the SCAD-penalized partially linear quantile-regression framework described by Algorithm 1 and Algorithm 2.
+This repository contains a cleaned computational implementation of the SCAD-penalized partially linear quantile-regression framework.
 
 The working model is
 
