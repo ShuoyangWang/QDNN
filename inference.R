@@ -1,5 +1,5 @@
 # ============================================================
-# inference_rank_score_plqr_dnn.R
+# inference.R
 #
 # Rank score test for crucial linear covariates in the current
 # partially linear quantile-regression framework.
@@ -310,8 +310,7 @@ rank_score_core_plqr <- function(
 # Public wrapper after variable selection.
 #
 # target_from = "select": test columns of x_select.
-# target_from = "keep"  : test columns of x_keep. This is the
-#                         closest analog of the old direct-effect test.
+# target_from = "keep"  : test columns of x_keep.
 # ------------------------------------------------------------
 rank_score_test_plqr_dnn <- function(
     y,

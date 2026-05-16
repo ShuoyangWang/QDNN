@@ -1,18 +1,15 @@
 # ============================================================
-# estimation_scad_plqr_dnn.R
+# estimation.R
 #
-# Algorithm 1 computational implementation:
-# Adam for SCAD-penalized partially linear quantile regression
-# with a neural-network nonlinear component.
+# Estimation routine for SCAD-penalized partially linear
+# quantile regression with a neural-network nonlinear component.
 #
 # Model:
 #   y = x_select %*% alpha + x_keep %*% gamma + f_W(z) + error
 #
 # Notation:
 #   x_select : linear covariates subject to SCAD selection.
-#              In the old mediation code, this was M.
 #   x_keep   : optional linear covariates always kept in the model.
-#              In the old mediation code, this was x.
 #   z        : nonlinear covariates modeled by the DNN.
 #
 # Important selection rule:
@@ -149,7 +146,7 @@ predict_plqr_dnn_component <- function(fit, z) {
 }
 
 # ------------------------------------------------------------
-# Main estimation function: Algorithm 1 computational version.
+# Main estimation function.
 # ------------------------------------------------------------
 fit_scad_plqr_dnn <- function(
     x_select,

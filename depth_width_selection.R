@@ -1,20 +1,16 @@
 # ============================================================
-# depth_width_selection_scad_plqr_dnn.R
+# depth_width_selection.R
 #
-# Algorithm 2 computational implementation:
 # Depth-and-width selection for SCAD-penalized partially linear
 # quantile regression.
 #
-# Requires estimation_scad_plqr_dnn.R to be sourced first because
+# Requires estimation.R to be sourced first because
 # this wrapper calls fit_scad_plqr_dnn(), predict_plqr_total(), and
 # predict_plqr_dnn_component().
 #
 # Current notation:
-#   x_select : selected/scannable linear covariates; corresponds to
-#              x in the algorithms and to M in the old datagen.R.
-#   x_keep   : optional always-kept linear covariates; corresponds to
-#              old x in datagen.R. Algorithms 1--2 can be read with
-#              x_keep omitted or included as an unpenalized linear block.
+#   x_select : selected/scannable linear covariates subject to SCAD.
+#   x_keep   : optional always-kept, unpenalized linear covariates.
 #   z        : nonlinear covariates.
 # ============================================================
 
@@ -103,12 +99,12 @@
 #   y = x_select %*% alpha + x_keep %*% gamma + z %*% theta + error
 # with SCAD penalty only on alpha.
 #
-# This Keras/Adam implementation is used for consistency with
-# Algorithm 1 and the original code. A statistician may replace this
-# helper with a quantreg::rq-based linear quantile-regression routine,
-# for example within a local-linear-approximation or coordinate-descent
-# implementation for SCAD. Note that quantreg::rq() itself is unpenalized
-# unless additional penalty machinery is supplied.
+# This Keras/Adam implementation is used for consistency with the
+# nonlinear estimator. Users may replace this helper with a
+# quantreg::rq-based linear quantile-regression routine, for example
+# within a local-linear-approximation or coordinate-descent implementation
+# for SCAD. Note that quantreg::rq() itself is unpenalized unless
+# additional penalty machinery is supplied.
 # ------------------------------------------------------------
 fit_scad_linear_qr <- function(
     x_select,
@@ -301,7 +297,7 @@ fit_scad_linear_qr <- function(
 }
 
 # ------------------------------------------------------------
-# Main Algorithm 2 wrapper.
+# Main depth-and-width selection wrapper.
 # ------------------------------------------------------------
 depth_width_select_scad_plqr <- function(
     x_select,
@@ -574,7 +570,7 @@ depth_width_select_scad_plqr <- function(
     return_model = TRUE
   )
 
-  # Defensive enforcement of Algorithm 2 active-set rule.
+  # Defensive enforcement of the depth-dependent active-set rule.
   if (L_star == 1) {
     active_set_final <- which(final_fit$alpha_hat != 0)
     selection_rule <- "exact_nonzero_for_single_hidden_layer"
